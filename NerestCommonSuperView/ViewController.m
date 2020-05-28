@@ -29,6 +29,8 @@
     
     NSLog(@"commonViewOfViews %@",NearestCommonSuperViewOfViews(views));
 
+    NSLog(@"levels %@",GetLevelStructureFromView(self.view));
+    
 }
 
 @end

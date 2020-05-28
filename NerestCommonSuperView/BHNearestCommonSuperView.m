@@ -47,3 +47,23 @@ UIView *NearestCommonSuperViewOfViews(NSArray<UIView *> *array){
     }
     return nil;
 }
+
+//获得一个以一个视图开始的所有子视图的层级结构。
+NSArray<NSArray<UIView *> *> *GetLevelStructureFromView(UIView *view){
+    if ([view isKindOfClass:[UIView class]]) {
+        NSMutableArray *output = [NSMutableArray new];
+        [output addObject:@[view]];
+        NSMutableArray *lastLevel = output.lastObject;
+        while (lastLevel.count) {
+            NSMutableArray *nextLevel = [NSMutableArray new];
+            for (UIView *aViewOfLastLevel  in lastLevel) {
+                [nextLevel addObjectsFromArray:aViewOfLastLevel.subviews];
+            }
+            [output addObject:nextLevel];
+            lastLevel = nextLevel;
+        }
+        return output;
+    }
+    return nil;
+}
+
