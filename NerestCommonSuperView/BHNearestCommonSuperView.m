@@ -59,7 +59,9 @@ NSArray<NSArray<UIView *> *> *GetLevelStructureFromView(UIView *view){
             for (UIView *aViewOfLastLevel  in lastLevel) {
                 [nextLevel addObjectsFromArray:aViewOfLastLevel.subviews];
             }
-            [output addObject:nextLevel];
+            if (nextLevel.count) {
+                [output addObject:nextLevel];
+            }
             lastLevel = nextLevel;
         }
         return output;
